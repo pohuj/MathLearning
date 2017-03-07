@@ -1,10 +1,13 @@
 package com.company.panels;
 
+import com.company.MainForm;
 import com.company.PanelManager;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -17,6 +20,7 @@ public class MainPanel extends JPanel {
     private Image background;
     private ArrayList<JButton> buttons;
     private PanelManager panelManager;
+    private MainForm mainForm;
 
 
     @Override
@@ -26,8 +30,10 @@ public class MainPanel extends JPanel {
         g.drawImage(background, 0, 0,sSize.width,sSize.height, null);
     }
 
-    public MainPanel(int activeButtons, Color wordsColor, Color backColor) throws IOException {
+    public MainPanel(MainForm mainForm,int activeButtons, Color wordsColor, Color backColor) throws IOException {
         super();
+
+        this.mainForm = mainForm;
 
         background = ImageIO.read(new File("wall.jpg"));
         GridBagLayout gbl = new GridBagLayout();
@@ -67,7 +73,8 @@ public class MainPanel extends JPanel {
         for(int i = 0; i < buttons.size(); i++){
             //buttons.get(i).setSize(500, 200);
             buttons.get(i).setMargin(new Insets(100,100,100,100));
-
+            buttons.get(i).addActionListener(new ButtonListener(i));
+            //buttons.get(i).setContentAreaFilled(false);
         }
 
        // setLayout(new BoxLayout(getRootPane(),BoxLayout.X_AXIS));
@@ -85,6 +92,28 @@ public class MainPanel extends JPanel {
         setVisible(true);
     }
 
+    public void setEnableButtons(int number){
+        for(int i = 0; i < buttons.size(); i++){
+            buttons.get(i).setEnabled(false);
+        }
+        for(int i = 0; i < number; i++){
+            buttons.get(i).setEnabled(true);
+        }
+    }
 
+
+    public class ButtonListener implements ActionListener {
+
+        private int numberOfBlock;
+
+        public ButtonListener(int numberOfBlock) {
+            this.numberOfBlock = numberOfBlock;
+        }
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            mainForm.setPanelManager(numberOfBlock);
+        }
+    }
 
 }

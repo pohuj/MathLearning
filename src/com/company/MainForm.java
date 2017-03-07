@@ -14,10 +14,12 @@ import java.io.IOException;
  */
 public class MainForm extends JFrame{
 
-    private JPanel mainPanel;
+    private MainPanel mainPanel;
     private AppModel appModel;
     private int currentProgress;
-    private JButton next;
+
+    private PanelManager panelManager;
+
 
     private JLabel header;
     private Color backColor = Color.WHITE;
@@ -28,27 +30,21 @@ public class MainForm extends JFrame{
 
         appModel = AppModel.getInstance();
 
-        next = new JButton("next");
-        next.setVisible(false);
-        next.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
 
-            }
-        });
+
 
         header = new JLabel("Здравствуйте, "+ appModel.getName() + " !");
         header.setFont(new Font("Verdana",Font.PLAIN, 26));
         header.setForeground(wordsColor);
         header.setHorizontalAlignment(SwingConstants.CENTER);
 
-        mainPanel = new MainPanel(appModel.getProgress() / 10 + 1,wordsColor, backColor);
+        mainPanel = new MainPanel(this,appModel.getProgress() / 10 + 1,wordsColor, backColor);
 
         setLayout(new BorderLayout());
 
         add(header, BorderLayout.NORTH);
         add(mainPanel, BorderLayout.CENTER);
-        add(new JButton("next"), BorderLayout.SOUTH);
+        //add(next, BorderLayout.SOUTH);
         //setContentPane(mainPanel);
 
         Dimension sSize = Toolkit.getDefaultToolkit ().getScreenSize ();
@@ -59,5 +55,20 @@ public class MainForm extends JFrame{
         setLocationRelativeTo(null);
 
         setVisible(true);
+
     }
+
+    public void setPanelManager(int numberOfBlock){
+        remove(mainPanel);
+        panelManager = new PanelManager(this,numberOfBlock);
+        add(panelManager,BorderLayout.CENTER);
+        repaint();
+    }
+
+    public void setMainPanel(int number){
+        remove(panelManager);
+        mainPanel.setEnableButtons(number);
+        add(mainPanel);
+    }
+
 }
