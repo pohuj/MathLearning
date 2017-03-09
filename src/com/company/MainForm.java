@@ -44,6 +44,9 @@ public class MainForm extends JFrame{
 
         add(header, BorderLayout.NORTH);
         add(mainPanel, BorderLayout.CENTER);
+        panelManager = new PanelManager(this,2);
+        //add(panelManager,BorderLayout.CENTER);
+//        panelManager.setVisible(false);
         //add(next, BorderLayout.SOUTH);
         //setContentPane(mainPanel);
 
@@ -56,12 +59,15 @@ public class MainForm extends JFrame{
 
         setVisible(true);
 
+        //setPanelManager(2);
     }
 
     public void setPanelManager(int numberOfBlock){
         remove(mainPanel);
         panelManager = new PanelManager(this,numberOfBlock);
         add(panelManager,BorderLayout.CENTER);
+        panelManager.setVisible(true);
+        validate();
         repaint();
     }
 
@@ -69,6 +75,8 @@ public class MainForm extends JFrame{
         remove(panelManager);
         mainPanel.setEnableButtons(number);
         add(mainPanel);
+        validate();
+        repaint();
     }
 
 }

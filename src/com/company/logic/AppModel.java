@@ -17,7 +17,7 @@ public class AppModel {
 
     private static AppModel instance;
 
-    private ArrayList<BufferedImage> lectures;
+    private ArrayList<Image> lectures;
     private ArrayList<Test> practices;
     private int progress;
     private String name;
@@ -33,9 +33,9 @@ public class AppModel {
 
         try {
 
-            wholeFile = Files.readAllLines(Paths.get(fileName), StandardCharsets.ISO_8859_1);
+            wholeFile = Files.readAllLines(Paths.get(fileName), StandardCharsets.UTF_8);
 
-            BufferedReader fin = new BufferedReader(new FileReader(data));
+            BufferedReader fin = new BufferedReader(new InputStreamReader(new FileInputStream(data),"UTF-8"));
             progress = Integer.parseInt(fin.readLine());
             name = fin.readLine();
             int numberQuestions = Integer.parseInt(fin.readLine());
@@ -43,8 +43,11 @@ public class AppModel {
                 practices.add(new Test(fin.readLine(),fin.readLine(),fin.readLine(),fin.readLine(),fin.readLine(),Integer.parseInt(fin.readLine())));
             }
 
+            Image buffer;
+
             for(int i = 1 ; i < numberQuestions + 1; i++){
-                lectures.add(ImageIO.read(new File("src/com/company/resources/images/lectures/lecture" + i +".png")));
+                buffer = ImageIO.read(new File("src/com/company/resources/images/lectures/lecture" + i +".png"));
+                lectures.add(i - 1,buffer);
             }
 
         } catch (FileNotFoundException e) {
@@ -73,9 +76,17 @@ public class AppModel {
         return progress;
     }
 
+    public int getActiveBlocks() {
+        if(progress != 40){
+        return progress / 10 + 1;
+        } else {
+            return 4;
+        }
+    }
+
     public void incrementProgress(){
-        wholeFile.set(0, wholeFile.get(0).replace(String.valueOf(progress), "" + progress++));
         progress++;
+        wholeFile.set(0, String.valueOf(progress));
         try {
             Files.write(Paths.get(fileName), wholeFile, StandardCharsets.UTF_8);
         } catch (IOException e) {

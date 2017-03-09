@@ -1,5 +1,6 @@
 package com.company.panels;
 
+import com.company.PanelManager;
 import com.company.logic.Test;
 
 import javax.swing.*;
@@ -10,19 +11,26 @@ import javax.swing.*;
 public class PracticePanel extends JPanel {
 
     JLabel question;
-    JRadioButton firstAnswer;
-    JRadioButton secondAnswer;
-    JRadioButton thirdAnswer;
-    JRadioButton fourthAnswer;
+    JButton firstAnswer;
+    JButton secondAnswer;
+    JButton thirdAnswer;
+    JButton fourthAnswer;
+    int rightAnswer = 1;
+    private PanelManager panelManager;
 
-    public PracticePanel(Test test) {
+    public PracticePanel(PanelManager panelManager,Test test) {
         super();
+        this.panelManager = panelManager;
 
         question = new JLabel(test.question);
-        firstAnswer = new JRadioButton(test.answer1);
-        secondAnswer = new JRadioButton(test.answer2);
-        thirdAnswer = new JRadioButton(test.answer3);
-        fourthAnswer = new JRadioButton(test.answer4);
+        firstAnswer = new JButton(test.answer1);
+        secondAnswer = new JButton(test.answer2);
+        thirdAnswer = new JButton(test.answer3);
+        fourthAnswer = new JButton(test.answer4);
+
+        ButtonGroup buttonGroup = new ButtonGroup();
+        //buttonGroup.add(question);
+
 
         add(question);
         add(firstAnswer);

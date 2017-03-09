@@ -10,8 +10,8 @@ public class LecturePanel extends JPanel {
     @Override
     protected void printComponent(Graphics g) {
         super.printComponent(g);
-        Dimension sSize = Toolkit.getDefaultToolkit ().getScreenSize ();
-        g.drawImage(image, 0, 0,sSize.width,sSize.height, null);
+       // Dimension sSize = Toolkit.getDefaultToolkit ().getScreenSize ();
+        //g.drawImage(image, 100, 100,100,100, null);
     }
 
     private JLabel picture;
@@ -20,11 +20,13 @@ public class LecturePanel extends JPanel {
     public LecturePanel(Image picture) {
 
         image = picture;
-       // this.picture.setIcon(new ImageIcon(picture));
+        this.picture = new JLabel();
+        ImageIcon img = new ImageIcon(picture);
+        this.picture.setIcon(img);
         //setLayout(new BorderLayout());
 
 
-       // add(this.picture, BorderLayout.CENTER);
+        add(this.picture,BorderLayout.CENTER);
         repaint();
     }
 
