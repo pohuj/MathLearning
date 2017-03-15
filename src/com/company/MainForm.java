@@ -63,6 +63,7 @@ public class MainForm extends JFrame{
         setLocationRelativeTo(null);
 
         setVisible(true);
+        setBackground(backColor);
 
         //setPanelManager(2);
     }

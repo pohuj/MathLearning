@@ -21,6 +21,8 @@ public class PanelManager extends JPanel{
     private PracticePanel practicePanel;
     private JProgressBar progressBar;
     private JButton next;
+    private JScrollPane lectureJScrollPane;
+    private CustomJLabel customJLabel;
 
     private ImageIcon currentLecture;
 
@@ -58,12 +60,21 @@ public class PanelManager extends JPanel{
             }
         }
 
+        customJLabel = new CustomJLabel(new ImageIcon(model.getLecture(currentProgress)));
+        lectureJScrollPane = new JScrollPane(customJLabel);
+        lectureJScrollPane.setBackground(Color.WHITE);
+        //lectureJScrollPane.setForeground(Color.WHITE);
+        lectureJScrollPane.getViewport().setOpaque(false);
+        //lectureJScrollPane.repaint();
+        //lectureJScrollPane.setAlignmentX(CENTER_ALIGNMENT);
+        //lectureJScrollPane.setWheelScrollingEnabled(true);
 //        lecturePanel = new LecturePanel(model.getLecture(currentProgress));
         practicePanel = new PracticePanel(this, model.getTest(currentProgress));
 
         currentLecture.setImage(model.getLecture(currentProgress));
         lectureLabel.setIcon(currentLecture);
         lectureLabel.setHorizontalAlignment(SwingConstants.CENTER);
+
 
         progressBar = new JProgressBar(0,10);
         progressBar.setStringPainted(true);
@@ -86,7 +97,8 @@ public class PanelManager extends JPanel{
 
         add(progressBar, BorderLayout.NORTH);
         //add(lecturePanel, BorderLayout.CENTER);
-        add(lectureLabel, BorderLayout.CENTER);
+        //add(lectureLabel, BorderLayout.CENTER);
+        add(lectureJScrollPane, BorderLayout.CENTER);
         add(practicePanel, BorderLayout.BEFORE_LINE_BEGINS);
         add(next, BorderLayout.SOUTH);
 
@@ -111,6 +123,11 @@ public class PanelManager extends JPanel{
         currentLecture.setImage(model.getLecture(currentProgress));
         lectureLabel.setIcon(currentLecture);
 
+        lectureJScrollPane = new JScrollPane(new CustomJLabel(new ImageIcon(model.getLecture(currentProgress))));
+        lectureJScrollPane.setBackground(Color.WHITE);
+        lectureJScrollPane.setWheelScrollingEnabled(true);
+        lectureJScrollPane.setAlignmentX(CENTER_ALIGNMENT);
+        add(lectureJScrollPane,BorderLayout.CENTER);
         practicePanel.setVisible(false);
         lectureLabel.setVisible(true);
         validate();
@@ -120,7 +137,8 @@ public class PanelManager extends JPanel{
 
     private void setPracticePanel() {
 //        lecturePanel.setVisible(false);
-        lectureLabel.setVisible(false);
+        //lectureLabel.setVisible(false);
+        remove(lectureJScrollPane);
         practicePanel.setVisible(true);
         validate();
         repaint();

@@ -34,6 +34,7 @@ public class PracticePanel extends JPanel {
         buttons.add(new CustomJButton(test.answer3,test.rightAnswer,3, panelManager));
         buttons.add(new CustomJButton(test.answer4,test.rightAnswer,4, panelManager));
 
+
         add(question);
         for(int i = 0; i < 4; i++){
             add(buttons.get(i));
@@ -42,10 +43,12 @@ public class PracticePanel extends JPanel {
         refresh.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                panelManager.vr();
+                setBackground(Color.RED);
+                repaint();
+                new SomeThing().run();
             }
         });
-        //add(refresh);
+        add(refresh);
         setBackground(Color.WHITE);
     }
 
@@ -63,6 +66,18 @@ public class PracticePanel extends JPanel {
         super.setVisible(aFlag);
         for(int i = 0; i < 4; i++){
             buttons.get(i).setStandardColor();
+        }
+    }
+
+    class SomeThing			//Нечто, реализующее интерфейс Runnable
+            implements Runnable		//(содержащее метод run())
+    {
+        public void run()		//Этот метод будет выполняться в побочном потоке
+        {
+            setBackground(Color.RED);
+            repaint();
+            panelManager.goToLectureBack();
+            System.out.println("Привет из побочного потока!");
         }
     }
 
