@@ -8,6 +8,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Created by pin on 01.03.2017.
@@ -40,24 +41,25 @@ public class PanelManager extends JPanel{
 
 
         wholeProgress = model.getProgress();
-        blockOfWholeProgress = wholeProgress / 10 - 1;/*0,1,2,3*/
+        blockOfWholeProgress = wholeProgress / 10;/*0,1,2,3*/
 
         if(numberOfPressedBlock < blockOfWholeProgress){
             changeProgressInFile = false;
             progressBarProgress = 0;
-            currentProgress = numberOfPressedBlock * 10 + 1;
+            currentProgress = numberOfPressedBlock * 10 ;
         } else {
             if(wholeProgress == 40){
                 progressBarProgress = 0;
-                currentProgress = 30;
+                currentProgress = 29;
                 changeProgressInFile = false;
             } else {
                 progressBarProgress = wholeProgress % 10;
-                currentProgress = wholeProgress + 1;
+                currentProgress = wholeProgress;
             }
         }
+
 //        lecturePanel = new LecturePanel(model.getLecture(currentProgress));
-        practicePanel = new PracticePanel(model.getTest(currentProgress));
+        practicePanel = new PracticePanel(this, model.getTest(currentProgress));
 
         currentLecture.setImage(model.getLecture(currentProgress));
         lectureLabel.setIcon(currentLecture);
@@ -71,10 +73,11 @@ public class PanelManager extends JPanel{
         next.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                //goToLectureForward(new CustomJButton("2",2,3,new PanelManager(mainForm,2)));
+               // progressBar.
                 incProgress();
                 nextPanel();
                 swapToggle();
-               // progressBar.
             }
         });
 
@@ -90,7 +93,7 @@ public class PanelManager extends JPanel{
         lectureLabel.setVisible(true);
         //lecturePanel.setVisible(true);
         practicePanel.setVisible(false);
-        //setBackground(Color.WHITE);
+        setBackground(mainForm.getBackColor());
         setVisible(true);
 
     }
@@ -147,4 +150,38 @@ public class PanelManager extends JPanel{
         }
     }
 
+    public void goToLectureBack() {
+
+        try {
+            TimeUnit.SECONDS.sleep(2);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        setLecturePanel();
+        swapToggle();
+    }
+
+    public void goToLectureForward(){
+
+
+
+        try {
+            TimeUnit.SECONDS.sleep(2);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        incProgress();
+        nextPanel();
+        swapToggle();
+    }
+
+    public void vr(){
+        validate();
+        repaint();
+        mainForm.mpvr();
+        mainForm.validate();
+        mainForm.repaint();
+    }
 }

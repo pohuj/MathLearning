@@ -22,6 +22,11 @@ public class MainForm extends JFrame{
 
 
     private JLabel header;
+
+    public Color getBackColor() {
+        return backColor;
+    }
+
     private Color backColor = Color.WHITE;
     private Color wordsColor = new Color(100,170,242);
 
@@ -42,7 +47,7 @@ public class MainForm extends JFrame{
 
         setLayout(new BorderLayout());
 
-        add(header, BorderLayout.NORTH);
+        //add(header, BorderLayout.NORTH);
         add(mainPanel, BorderLayout.CENTER);
         panelManager = new PanelManager(this,2);
         //add(panelManager,BorderLayout.CENTER);
@@ -54,7 +59,7 @@ public class MainForm extends JFrame{
         setSize (sSize);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        setResizable(false);
+        //setResizable(false);
         setLocationRelativeTo(null);
 
         setVisible(true);
@@ -77,6 +82,10 @@ public class MainForm extends JFrame{
         add(mainPanel);
         validate();
         repaint();
+    }
+
+    public void mpvr(){
+        mainPanel.vr();
     }
 
 }

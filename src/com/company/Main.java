@@ -19,6 +19,15 @@ public class Main {
             e.printStackTrace();
         }
 
-	    new MainForm();
+        javax.swing.SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
+                try {
+                    new MainForm();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
     }
 }

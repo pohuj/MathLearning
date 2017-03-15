@@ -27,7 +27,7 @@ public class MainPanel extends JPanel {
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         Dimension sSize = Toolkit.getDefaultToolkit ().getScreenSize ();
-        g.drawImage(background, 0, 0,sSize.width,sSize.height, null);
+        //g.drawImage(background, 0, 0,sSize.width,sSize.height, null);
     }
 
     public MainPanel(MainForm mainForm,int activeButtons, Color wordsColor, Color backColor) throws IOException {
@@ -114,6 +114,11 @@ public class MainPanel extends JPanel {
         public void actionPerformed(ActionEvent e) {
             mainForm.setPanelManager(numberOfBlock);
         }
+    }
+
+    public void vr(){
+        validate();
+        repaint();
     }
 
 }
