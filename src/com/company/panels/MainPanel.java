@@ -60,10 +60,15 @@ public class MainPanel extends JPanel {
         //setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
         buttons = new ArrayList<>();
 
-        buttons.add(new JButton("Дроби"));
+/*        buttons.add(new JButton("Дроби"));
         buttons.add(new JButton("Прценты"));
         buttons.add(new JButton("Рациональные числа"));
-        buttons.add(new JButton("Буквенные выражения"));
+        buttons.add(new JButton("Буквенные выражения"));*/
+
+        buttons.add(new JButton());
+        buttons.add(new JButton());
+        buttons.add(new JButton());
+        buttons.add(new JButton());
 
         for(int i = activeButtons; i < buttons.size(); i++){
             buttons.get(i).setEnabled(false);
@@ -71,9 +76,13 @@ public class MainPanel extends JPanel {
         }
 
         for(int i = 0; i < buttons.size(); i++){
-            //buttons.get(i).setSize(500, 200);
-            buttons.get(i).setMargin(new Insets(100,100,100,100));
+            //buttons.get(i).setSize(100, 100);
+            //buttons.get(i).setMargin(new Insets(100,100,100,100));
             buttons.get(i).addActionListener(new ButtonListener(i));
+            buttons.get(i).setIcon(new ImageIcon("D://Math/pictures/picture" + i + ".png"));
+            buttons.get(i).setRolloverIcon(new ImageIcon("D://Math/pictures/pictureRoll" + i + ".png"));
+            buttons.get(i).setPressedIcon(new ImageIcon("D://Math/pictures/picturePress" + i + ".png"));
+            buttons.get(i).setBorder(null);
             //buttons.get(i).setContentAreaFilled(false);
         }
 

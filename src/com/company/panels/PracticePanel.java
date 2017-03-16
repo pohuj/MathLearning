@@ -20,12 +20,15 @@ public class PracticePanel extends JPanel {
     public ArrayList<CustomJButton> buttons;
     int rightAnswer = 1;
     private PanelManager panelManager;
+    private Font font;
 
     public PracticePanel(PanelManager panelManager,Test test) {
         super();
         this.panelManager = panelManager;
         rightAnswer = test.rightAnswer;
+        font = new Font("Verdana", Font.PLAIN, 50);
         question = new JLabel(test.question);
+        question.setFont(font);
         question.setHorizontalAlignment(SwingConstants.CENTER);
 
         buttons = new ArrayList<>();
@@ -35,22 +38,15 @@ public class PracticePanel extends JPanel {
         buttons.add(new CustomJButton(test.answer4,test.rightAnswer,4, panelManager));
 
 
-        setLayout(new FlowLayout());
 
+        setLayout(new BoxLayout(this,BoxLayout.Y_AXIS));
+        //question.setBounds(10,0,1000,100);
         add(question);
         for(int i = 0; i < 4; i++){
             add(buttons.get(i));
+            buttons.get(i).setPreferredSize(new Dimension(300,100));
         }
-        JButton refresh = new JButton("refresh");
-        refresh.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                setBackground(Color.RED);
-                repaint();
-                new SomeThing().run();
-            }
-        });
-        //add(refresh);
+
         setBackground(Color.WHITE);
     }
 
@@ -58,6 +54,11 @@ public class PracticePanel extends JPanel {
 
         question.setText(test.question);
         buttons.get(0).setTestInfo(test.answer1,test.rightAnswer,1);
+/*        buttons.get(0).setFont(font);
+        buttons.get(1).setFont(font);
+        buttons.get(2).setFont(font);
+        buttons.get(3).setFont(font);*/
+
         buttons.get(1).setTestInfo(test.answer2,test.rightAnswer,2);
         buttons.get(2).setTestInfo(test.answer3,test.rightAnswer,3);
         buttons.get(3).setTestInfo(test.answer4,test.rightAnswer,4);
