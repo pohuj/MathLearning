@@ -28,11 +28,15 @@ public class MainForm extends JFrame{
     }
 
     private Color backColor = Color.WHITE;
+
+    public Color getWordsColor() {
+        return wordsColor;
+    }
+
     private Color wordsColor = new Color(100,170,242);
 
     MainForm() throws IOException {
         super("Learn math");
-
         appModel = AppModel.getInstance();
 
 

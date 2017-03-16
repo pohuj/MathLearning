@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" build-on-make="true" name="Vektor:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/Vektor_jar</output-path>
+    <root id="archive" name="Vektor.jar">
+      <element id="module-output" name="Vektor" />
+    </root>
+  </artifact>
+</component>

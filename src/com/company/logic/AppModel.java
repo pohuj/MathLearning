@@ -21,7 +21,8 @@ public class AppModel {
     private ArrayList<Test> practices;
     private int progress;
     private String name;
-    private String fileName = "src/com/company/resources/data.txt";
+    //private String fileName = "src/com/company/resources/data.txt";
+    private String fileName = "D://data.txt";
     private List<String> wholeFile = new ArrayList<>();
 
     public AppModel() {
@@ -46,7 +47,7 @@ public class AppModel {
             Image buffer;
 
             for(int i = 1 ; i < numberQuestions + 1; i++){
-                buffer = ImageIO.read(new File("src/com/company/resources/images/lectures/lecture" + i +".png"));
+                buffer = ImageIO.read(new File("D://lectures/lecture" + i +".png"));
                 lectures.add(i - 1,buffer);
             }
 

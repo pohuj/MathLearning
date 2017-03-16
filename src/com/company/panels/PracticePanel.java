@@ -35,6 +35,8 @@ public class PracticePanel extends JPanel {
         buttons.add(new CustomJButton(test.answer4,test.rightAnswer,4, panelManager));
 
 
+        setLayout(new FlowLayout());
+
         add(question);
         for(int i = 0; i < 4; i++){
             add(buttons.get(i));
@@ -48,7 +50,7 @@ public class PracticePanel extends JPanel {
                 new SomeThing().run();
             }
         });
-        add(refresh);
+        //add(refresh);
         setBackground(Color.WHITE);
     }
 

@@ -60,8 +60,13 @@ public class PanelManager extends JPanel{
             }
         }
 
-        customJLabel = new CustomJLabel(new ImageIcon(model.getLecture(currentProgress)));
-        lectureJScrollPane = new JScrollPane(customJLabel);
+        JPanel jpanel = new JPanel();
+        jpanel.add(new CustomJLabel(new ImageIcon(model.getLecture(currentProgress))),BorderLayout.CENTER);
+        jpanel.setBackground(Color.WHITE);
+        lectureJScrollPane = new JScrollPane(jpanel);
+
+        //customJLabel = new CustomJLabel(new ImageIcon(model.getLecture(currentProgress)));
+        //lectureJScrollPane = new JScrollPane(customJLabel);
         lectureJScrollPane.setBackground(Color.WHITE);
         //lectureJScrollPane.setForeground(Color.WHITE);
         lectureJScrollPane.getViewport().setOpaque(false);
@@ -80,7 +85,8 @@ public class PanelManager extends JPanel{
         progressBar.setStringPainted(true);
         progressBar.setValue(progressBarProgress);
 
-        next = new JButton("next");
+        next = new JButton("Далее");
+        next.setBackground(mainForm.getWordsColor());
         next.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -123,13 +129,17 @@ public class PanelManager extends JPanel{
         currentLecture.setImage(model.getLecture(currentProgress));
         lectureLabel.setIcon(currentLecture);
 
-        lectureJScrollPane = new JScrollPane(new CustomJLabel(new ImageIcon(model.getLecture(currentProgress))));
+        JPanel jpanel = new JPanel();
+        jpanel.add(new CustomJLabel(new ImageIcon(model.getLecture(currentProgress))),BorderLayout.CENTER);
+        jpanel.setBackground(Color.WHITE);
+        lectureJScrollPane = new JScrollPane(jpanel);
         lectureJScrollPane.setBackground(Color.WHITE);
         lectureJScrollPane.setWheelScrollingEnabled(true);
         lectureJScrollPane.setAlignmentX(CENTER_ALIGNMENT);
         add(lectureJScrollPane,BorderLayout.CENTER);
         practicePanel.setVisible(false);
         lectureLabel.setVisible(true);
+        next.setVisible(true);
         validate();
         repaint();
 //        lecturePanel.setVisible(true);
@@ -140,6 +150,7 @@ public class PanelManager extends JPanel{
         //lectureLabel.setVisible(false);
         remove(lectureJScrollPane);
         practicePanel.setVisible(true);
+        next.setVisible(false);
         validate();
         repaint();
     }

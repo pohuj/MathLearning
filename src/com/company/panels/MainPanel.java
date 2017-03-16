@@ -60,10 +60,10 @@ public class MainPanel extends JPanel {
         //setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
         buttons = new ArrayList<>();
 
-        buttons.add(new JButton("Chapter 1"));
-        buttons.add(new JButton("Chapter 2"));
-        buttons.add(new JButton("Chapter 3"));
-        buttons.add(new JButton("Chapter 4"));
+        buttons.add(new JButton("Дроби"));
+        buttons.add(new JButton("Прценты"));
+        buttons.add(new JButton("Рациональные числа"));
+        buttons.add(new JButton("Буквенные выражения"));
 
         for(int i = activeButtons; i < buttons.size(); i++){
             buttons.get(i).setEnabled(false);
