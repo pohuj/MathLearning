@@ -126,6 +126,7 @@ public class PanelManager extends JPanel{
 
     private void setLecturePanel() {
         practicePanel.setTest(model.getTest(currentProgress));
+        System.out.println("RightAnswer = " + model.getTest(currentProgress).rightAnswer);
         currentLecture.setImage(model.getLecture(currentProgress));
         lectureLabel.setIcon(currentLecture);
 

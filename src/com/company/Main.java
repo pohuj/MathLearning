@@ -18,8 +18,13 @@ public class Main {
         } catch (UnsupportedLookAndFeelException e) {
             e.printStackTrace();
         }
-
-new MainForm();
+        SwingUtilities.invokeLater(() -> {
+            try {
+                new MainForm();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
 
     }
 }

@@ -37,6 +37,8 @@ public class MainForm extends JFrame{
 
     MainForm() throws IOException {
         super("Learn math");
+        ImageIcon img = new ImageIcon("D://Math/icon.png");
+        setIconImage(img.getImage());
         appModel = AppModel.getInstance();
 
 
@@ -53,7 +55,7 @@ public class MainForm extends JFrame{
 
         //add(header, BorderLayout.NORTH);
         add(mainPanel, BorderLayout.CENTER);
-        panelManager = new PanelManager(this,2);
+        //panelManager = new PanelManager(this,2);
         //add(panelManager,BorderLayout.CENTER);
 //        panelManager.setVisible(false);
         //add(next, BorderLayout.SOUTH);

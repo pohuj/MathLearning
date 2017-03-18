@@ -35,7 +35,7 @@ public class MainPanel extends JPanel {
 
         this.mainForm = mainForm;
 
-        background = ImageIO.read(new File("wall.jpg"));
+        //background = ImageIO.read(new File("wall.jpg"));
         GridBagLayout gbl = new GridBagLayout();
         setLayout(gbl);
 
